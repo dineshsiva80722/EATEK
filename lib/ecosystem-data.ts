@@ -1,5 +1,33 @@
+import { LucideIcon } from "lucide-react"
+
+export interface EcosystemNode {
+  id: string
+  slug: string
+  name: string
+  color: string
+  icon: LucideIcon
+  features: Array<{
+    title: string
+    description: string
+  }>
+  useCases: Array<{
+    title: string
+    description: string
+  }>
+  content: {
+    intro: string
+    mission: string
+    vision: string
+    approach: string
+    benefits: string[]
+  }
+}
+
+// Example data with proper icon type
 import {
-  type LucideIcon,
+  Cloud,
+  Database,
+  Shield,
   Lightbulb,
   BookOpen,
   Palette,
@@ -10,7 +38,6 @@ import {
   School,
   ClipboardCheck,
   FlaskConical,
-  Cloud,
   BrainCircuit,
   Smartphone,
   PenTool,
@@ -19,44 +46,7 @@ import {
   BarChart3,
 } from "lucide-react"
 
-export type EcosystemCategory = "core" | "education" | "art" | "technology" | "service"
-
-export interface EcosystemNode {
-  id: string
-  slug: string
-  name: string
-  description: string
-  icon: React.ComponentType
-  category: "core" | "education" | "art" | "technology" | "service"
-  color: string
-  features: string[]
-  useCases: Array<{
-    title: string
-    description: string
-  }>
-  relatedNodes: string[]
-  content: {
-    intro: string
-    mission: string
-    vision: string
-    approach: string
-    benefits: string[]
-  }
-}
-
-export function getRelatedNodes(nodeId: string): EcosystemNode[] {
-  const node = ecosystemNodes.find((n) => n.id === nodeId)
-  if (!node?.relatedNodes) {
-    return []
-  }
-
-  return node.relatedNodes
-    .map((id) => ecosystemNodes.find((n) => n.id === id))
-    .filter((node): node is EcosystemNode => node !== undefined)
-}
-
 export const ecosystemNodes: EcosystemNode[] = [
-  // Core Node
   {
     id: "eatek",
     name: "EATEK Core",
@@ -64,7 +54,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description:
       "The central hub of our ecosystem, connecting education, art, and technology to drive innovation and positive change.",
     icon: Lightbulb,
-    category: "core",
     color: "#6366f1",
     features: [
       "Integrated ecosystem management",
@@ -124,8 +113,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     slug: "education",
     description: "Transforming learning experiences through innovative approaches, tools, and methodologies.",
     icon: BookOpen,
-    category: "education",
-    parent: "eatek",
     color: "#0ea5e9",
     features: [
       "Lifelong learning pathways",
@@ -176,8 +163,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description:
       "Exploring creativity and expression through digital and traditional mediums, fostering cultural innovation.",
     icon: Palette,
-    category: "art",
-    parent: "eatek",
     color: "#ec4899",
     features: [
       "Digital art creation tools",
@@ -225,8 +210,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     slug: "technology",
     description: "Developing and implementing innovative technological solutions to address complex challenges.",
     icon: Cpu,
-    category: "technology",
-    parent: "eatek",
     color: "#10b981",
     features: [
       "Emerging technology research",
@@ -278,8 +261,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description:
       "Digital environments that facilitate online learning, offering courses, resources, and interactive experiences.",
     icon: School,
-    category: "education",
-    parent: "education",
     color: "#0284c7",
     features: [
       "Adaptive learning pathways",
@@ -327,8 +308,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     slug: "assessment-tools",
     description: "Solutions for evaluating learning outcomes, measuring progress, and providing meaningful feedback.",
     icon: ClipboardCheck,
-    category: "education",
-    parent: "education",
     color: "#0369a1",
     features: [
       "Authentic assessment design",
@@ -376,8 +355,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     slug: "stem-education",
     description: "Programs and resources focused on science, technology, engineering, and mathematics learning.",
     icon: FlaskConical,
-    category: "education",
-    parent: "education",
     color: "#0ea5e9",
     features: [
       "Hands-on learning kits",
@@ -427,8 +404,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description:
       "Creation and distribution of content across digital platforms, including video, audio, and interactive media.",
     icon: Smartphone,
-    category: "art",
-    parent: "art",
     color: "#db2777",
     features: [
       "Multi-platform content creation",
@@ -476,8 +451,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     slug: "creative-tools",
     description: "Software, hardware, and methodologies that enable artistic creation and expression.",
     icon: PenTool,
-    category: "art",
-    parent: "art",
     color: "#be185d",
     features: [
       "Digital art software",
@@ -525,8 +498,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     slug: "immersive-experiences",
     description: "Virtual, augmented, and mixed reality environments that create engaging, multi-sensory experiences.",
     icon: VrHeadset,
-    category: "art",
-    parent: "art",
     color: "#ec4899",
     features: [
       "Virtual reality environments",
@@ -577,8 +548,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     slug: "enterprise-solutions",
     description: "Comprehensive technology systems and services designed for organizational needs and challenges.",
     icon: Building,
-    category: "technology",
-    parent: "technology",
     color: "#059669",
     features: [
       "Digital transformation strategy",
@@ -627,8 +596,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description:
       "Infrastructure, platforms, and software delivered over the internet, offering scalability and flexibility.",
     icon: Cloud,
-    category: "technology",
-    parent: "technology",
     color: "#047857",
     features: [
       "Cloud migration strategy",
@@ -677,8 +644,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description:
       "Artificial intelligence and machine learning solutions that automate tasks, generate insights, and enhance capabilities.",
     icon: BrainCircuit,
-    category: "technology",
-    parent: "technology",
     color: "#10b981",
     features: [
       "Predictive analytics",
@@ -728,8 +693,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     slug: "innovation-lab",
     description: "A collaborative space for experimentation, prototyping, and developing cutting-edge solutions.",
     icon: Rocket,
-    category: "service",
-    parent: "eatek",
     color: "#8b5cf6",
     features: [
       "Rapid prototyping facilities",
@@ -777,8 +740,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     slug: "startup-accelerator",
     description: "Programs and resources to help early-stage ventures grow, develop, and secure investment.",
     icon: BarChart3,
-    category: "service",
-    parent: "eatek",
     color: "#7c3aed",
     features: [
       "Mentorship networks",
@@ -827,8 +788,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description:
       "Initiatives that engage diverse stakeholders in learning, creating, and collaborating for collective benefit.",
     icon: Users,
-    category: "service",
-    parent: "eatek",
     color: "#6d28d9",
     features: [
       "Community workshops and events",
@@ -876,8 +835,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     slug: "consulting-services",
     description: "Expert guidance and support for organizations navigating complex challenges and opportunities.",
     icon: LineChart,
-    category: "service",
-    parent: "eatek",
     color: "#5b21b6",
     features: [
       "Strategic planning",
