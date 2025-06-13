@@ -6,10 +6,7 @@ export interface EcosystemNode {
   name: string
   color: string
   icon: LucideIcon
-  features: Array<{
-    title: string
-    description: string
-  }>
+  features: string[] // Changed from Array<{title: string, description: string}>
   useCases: Array<{
     title: string
     description: string
