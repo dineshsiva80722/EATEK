@@ -26,7 +26,7 @@ export interface EcosystemNode {
   slug: string
   name: string
   description: string
-  icon: React.ComponentType
+  icon: LucideIcon
   category: "core" | "education" | "art" | "technology" | "service"
   color: string
   features: string[]
@@ -49,10 +49,11 @@ export function getRelatedNodes(nodeId: string): EcosystemNode[] {
   if (!node?.relatedNodes) {
     return []
   }
-
+  
+  // Map related node IDs to their full node objects
   return node.relatedNodes
-    .map((id) => ecosystemNodes.find((n) => n.id === id))
-    .filter((node): node is EcosystemNode => node !== undefined)
+    .map(id => ecosystemNodes.find(n => n.id === id))
+    .filter((n): n is EcosystemNode => n !== undefined)
 }
 
 export const ecosystemNodes: EcosystemNode[] = [
@@ -926,18 +927,6 @@ export function getNodeById(id: string): EcosystemNode | undefined {
     return undefined
   }
   return ecosystemNodes.find((node) => node.id === id)
-}
-
-export function getRelatedNodes(nodeId: string): EcosystemNode[] {
-  const node = ecosystemNodes.find((n) => n.id === nodeId)
-  if (!node?.relatedNodes) {
-    return []
-  }
-  
-  // Map related node IDs to their full node objects
-  return node.relatedNodes
-    .map(id => ecosystemNodes.find(n => n.id === id))
-    .filter((n): n is EcosystemNode => n !== undefined)
 }
 
 export function getAllNodesByCategory(category: EcosystemCategory): EcosystemNode[] {
