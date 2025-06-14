@@ -136,7 +136,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description: "Transforming learning experiences through innovative approaches, tools, and methodologies.",
     icon: BookOpen,
     category: "education",
-    parent: "eatek",
     color: "#0ea5e9",
     features: [
       "Lifelong learning pathways",
@@ -931,4 +930,4 @@ export const ecosystemNodes: EcosystemNode[] = [
   },
 ]
 
-// Export all necessary functions and the nodes ar
+// Export all necessary functions and the nodes array
