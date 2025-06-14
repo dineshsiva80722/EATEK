@@ -1,4 +1,4 @@
-import type { EcosystemNode } from "./ecosystem-data"
+import type { EcosystemNode } from "@/lib/ecosystem-data"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
