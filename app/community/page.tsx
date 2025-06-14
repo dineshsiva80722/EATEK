@@ -476,8 +476,8 @@ export default function CommunityPage() {
                   </div>
                 </div>
                 <p className="italic text-muted-foreground mb-4">
-                  "Joining the EATEK community has transformed my practice. The intersection of art and technology is
-                  where I&apos;ve always wanted to work, and finding like-minded collaborators has been invaluable."
+                  &quot;Joining the EATEK community has transformed my practice. The intersection of art and technology is
+                  where I&apos;ve always wanted to work, and finding like-minded collaborators has been invaluable.&quot;
                 </p>
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -516,8 +516,8 @@ export default function CommunityPage() {
                   </div>
                 </div>
                 <p className="italic text-muted-foreground mb-4">
-                  "The ELAN fellowship was a career-defining experience. Working alongside talented creators with the
-                  support of the EATEK team helped me bring my vision to life in ways I couldn&apos;t have imagined."
+                  &quot;The ELAN fellowship was a career-defining experience. Working alongside talented creators with the
+                  support of the EATEK team helped me bring my vision to life in ways I couldn&apos;t have imagined.&quot;
                 </p>
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -556,8 +556,8 @@ export default function CommunityPage() {
                   </div>
                 </div>
                 <p className="italic text-muted-foreground mb-4">
-                  "The connections I&apos;ve made through EATEK have been career-changing. It&apos;s not just a network — it&apos;s
-                  family."
+                  &quot;The connections I&apos;ve made through EATEK have been career-changing. It&apos;s not just a network — it&apos;s
+                  family.&quot;
                 </p>
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
