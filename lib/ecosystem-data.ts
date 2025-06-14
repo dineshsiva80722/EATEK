@@ -776,7 +776,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description: "Programs and resources to help early-stage ventures grow, develop, and secure investment.",
     icon: BarChart3,
     category: "service",
-    parent: "eatek",
     color: "#7c3aed",
     features: [
       "Mentorship networks",
@@ -826,7 +825,6 @@ export const ecosystemNodes: EcosystemNode[] = [
       "Initiatives that engage diverse stakeholders in learning, creating, and collaborating for collective benefit.",
     icon: Users,
     category: "service",
-    parent: "eatek",
     color: "#6d28d9",
     features: [
       "Community workshops and events",
@@ -875,7 +873,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description: "Expert guidance and support for organizations navigating complex challenges and opportunities.",
     icon: LineChart,
     category: "service",
-    parent: "eatek",
     color: "#5b21b6",
     features: [
       "Strategic planning",
