@@ -1,14 +1,14 @@
 import React from "react"
 import EcosystemMap from "@/components/ecosystem-map"
-import { getAllNodesByCategory, type EcosystemCategory } from "@/lib/ecosystem-data"
+import { getRelatedNodes, type EcosystemNode } from "@/lib/ecosystem-data"
 import Link from "next/link"
 
 export default function EcosystemPage() {
-  const coreNodes = getAllNodesByCategory("core")
-  const educationNodes = getAllNodesByCategory("education")
-  const artNodes = getAllNodesByCategory("art")
-  const technologyNodes = getAllNodesByCategory("technology")
-  const serviceNodes = getAllNodesByCategory("service")
+  const coreNodes = getRelatedNodes("eatek")
+  const educationNodes = getRelatedNodes("education")
+  const artNodes = getRelatedNodes("art")
+  const technologyNodes = getRelatedNodes("technology")
+  const serviceNodes = getRelatedNodes("service")
 
   return (
     <div className="container py-12">
