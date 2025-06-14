@@ -2,13 +2,36 @@ import React from "react"
 import { type EcosystemNode } from "@/lib/ecosystem-data"
 import Link from "next/link"
 import { ChevronLeft } from "lucide-react"
+import * as LucideIcons from "lucide-react"
 
 interface EcosystemNodeHeaderProps {
   node: EcosystemNode
 }
 
 export default function EcosystemNodeHeader({ node }: EcosystemNodeHeaderProps) {
-  const Icon = node.icon
+  // Create a mapping of icon names to their components
+  const iconComponents: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
+    Lightbulb: LucideIcons.Lightbulb,
+    BookOpen: LucideIcons.BookOpen,
+    Palette: LucideIcons.Palette,
+    Cpu: LucideIcons.Cpu,
+    Rocket: LucideIcons.Rocket,
+    Users: LucideIcons.Users,
+    LineChart: LucideIcons.LineChart,
+    School: LucideIcons.School,
+    ClipboardCheck: LucideIcons.ClipboardCheck,
+    FlaskConical: LucideIcons.FlaskConical,
+    Cloud: LucideIcons.Cloud,
+    BrainCircuit: LucideIcons.BrainCircuit,
+    Smartphone: LucideIcons.Smartphone,
+    PenTool: LucideIcons.PenTool,
+    VrHeadset: LucideIcons.HeadsetIcon,
+    Building: LucideIcons.Building,
+    BarChart3: LucideIcons.BarChart3,
+  }
+
+  // Get the icon component or fallback to HelpCircle
+  const Icon = iconComponents[node.icon] || LucideIcons.HelpCircle
 
   return (
     <div>
