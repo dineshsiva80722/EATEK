@@ -36,7 +36,7 @@ export const iconComponents: Record<string, React.ComponentType<{ className?: st
 }
 
 // Helper function to get an icon component by name
-export function getIconComponent(iconName: string, className: string = "h-6 w-6") {
+export function getIconComponent(iconName: string, className = "h-6 w-6") {
   const IconComponent = iconComponents[iconName] || LucideIcons.HelpCircle
   return <IconComponent className={className} />
 }
