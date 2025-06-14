@@ -35,13 +35,19 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           <div className="relative group">
-            {/* <button
+            <Link 
+              href="/solutions"
               className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-teal-600 transition-colors"
-              onClick={() => toggleDropdown("solutions")}
+              onClick={(e) => {
+                e.preventDefault();
+                toggleDropdown("solutions");
+              }}
             >
               Solutions <ChevronDown className="h-4 w-4" />
-            </button> */}
-            <div className="absolute left-0 top-full mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            </Link>
+            <div className={`absolute left-0 top-full mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-gray-200 transition-all duration-200 ${
+              activeDropdown === "solutions" ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}>
               <div className="py-2 px-3">
                 <Link href="/education" className="block py-2 px-3 text-sm text-gray-700 hover:bg-gray-100 rounded-md">
                   Education Solutions
@@ -65,13 +71,19 @@ export default function Header() {
           </Link>
 
           <div className="relative group">
-            <button
+            <Link 
+              href="/services"
               className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-teal-600 transition-colors"
-              onClick={() => toggleDropdown("services")}
+              onClick={(e) => {
+                e.preventDefault();
+                toggleDropdown("services");
+              }}
             >
               Services <ChevronDown className="h-4 w-4" />
-            </button>
-            <div className="absolute left-0 top-full mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            </Link>
+            <div className={`absolute left-0 top-full mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-gray-200 transition-all duration-200 ${
+              activeDropdown === "services" ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}>
               <div className="py-2 px-3">
                 <Link href="/consulting" className="block py-2 px-3 text-sm text-gray-700 hover:bg-gray-100 rounded-md">
                   IT Consulting
