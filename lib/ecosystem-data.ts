@@ -728,7 +728,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description: "A collaborative space for experimentation, prototyping, and developing cutting-edge solutions.",
     icon: Rocket,
     category: "service",
-    parent: "eatek",
     color: "#8b5cf6",
     features: [
       "Rapid prototyping facilities",
