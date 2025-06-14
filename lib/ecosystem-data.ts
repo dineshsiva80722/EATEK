@@ -882,10 +882,6 @@ const ecosystemNodes: EcosystemNode[] = [
 ]
 
 // Export individual functions
-export const getAllNodesByCategory = (category: EcosystemCategory): EcosystemNode[] => {
-  return ecosystemNodes.filter((node) => node.category === category);
-};
-
 export const getRelatedNodes = (nodeId: string): EcosystemNode[] => {
   const node = getNodeById(nodeId);
   if (!node) return [];
@@ -896,5 +892,5 @@ export const getRelatedNodes = (nodeId: string): EcosystemNode[] => {
 };
 
 // Export the nodes array and utility functions
-export { ecosystemNodes, getNodeById, getAllNodesByCategory, getRelatedNodes };
+export { ecosystemNodes, getNodeById, getRelatedNodes };
 export default ecosystemNodes;
