@@ -1,7 +1,7 @@
 import React from "react"
-import { type EcosystemNode } from "@/lib/ecosystem-data"
+import { type EcosystemNode } from "../lib/ecosystem-data"
 import Link from "next/link"
-import { getIconComponent } from "@/lib/icons"
+import { getIconComponent } from "../lib/icons"
 
 interface EcosystemNodeHeaderProps {
   node: EcosystemNode
@@ -20,7 +20,7 @@ export default function EcosystemNodeHeader({ node }: EcosystemNodeHeaderProps) 
 
       <div className="flex items-center gap-4 mb-4">
         <div className={`p-2 rounded-lg`} style={{ backgroundColor: `${node.color}1a` }}>
-          {getIconComponent(node.icon, `w-8 h-8`)}
+          {node.icon && getIconComponent(node.icon, "w-8 h-8")}
         </div>
 
         <div>

@@ -12,7 +12,7 @@ interface BlogPostPageProps {
   }
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
+export default function BlogPostPage() {
   // In a real application, you would fetch the blog post data based on the slug
   // For this example, we'll use hardcoded data
   const post = {

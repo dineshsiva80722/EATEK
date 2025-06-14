@@ -1,18 +1,3 @@
-import { type ReactElement } from "react"
-import {
-  GraduationCap,
-  BarChart3,
-  Lightbulb,
-  Blocks,
-  Workflow,
-  Laptop,
-  Atom,
-  School,
-  Presentation,
-  Share2,
-  Handshake,
-} from "lucide-react"
-
 // Define the solution node type
 export interface SolutionNode {
   id: string
