@@ -922,18 +922,11 @@ export const ecosystemNodes: EcosystemNode[] = [
 ]
 
 export function getNodeById(id: string): EcosystemNode | undefined {
-  if (!id) {
-    console.warn('getNodeById was called with an empty id')
-    return undefined
-  }
   return ecosystemNodes.find((node) => node.id === id)
 }
 
 export function getAllNodesByCategory(category: EcosystemCategory): EcosystemNode[] {
-  if (!category) {
-    console.warn('getAllNodesByCategory was called with an empty category')
-    return []
-  }
-  
   return ecosystemNodes.filter((node) => node.category === category)
 }
+
+export { ecosystemNodes, getRelatedNodes, getNodeById, getAllNodesByCategory }
