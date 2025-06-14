@@ -46,11 +46,11 @@ interface NodePosition {
 }
 
 interface EcosystemMapProps {
-  coreNodes: any[]
-  educationNodes: any[]
-  artNodes: any[]
-  technologyNodes: any[]
-  serviceNodes: any[]
+  coreNodes?: any[]
+  educationNodes?: any[]
+  artNodes?: any[]
+  technologyNodes?: any[]
+  serviceNodes?: any[]
 }
 
 export default function EcosystemMap({
