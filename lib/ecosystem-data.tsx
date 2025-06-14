@@ -70,6 +70,16 @@ export const getAllNodesByCategory = (category: EcosystemNode['category']) => {
   return ecosystemNodes.filter(node => node.category === category);
 };
 
+export const getRelatedNodes = (nodeId: string) => {
+  const node = ecosystemNodes.find(n => n.id === nodeId);
+  if (!node) return [];
+  
+  return ecosystemNodes.filter(n => 
+    n.id !== nodeId && 
+    (node.connections.includes(n.id) || n.connections.includes(node.id))
+  );
+};
+
 export const ecosystemNodes: EcosystemNode[] = [
   // Core EATEK Node
   {
