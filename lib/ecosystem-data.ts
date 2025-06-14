@@ -899,6 +899,6 @@ export const getRelatedNodes = (nodeId: string): EcosystemNode[] => {
     .filter((n): n is EcosystemNode => n !== undefined);
 };
 
-// Export the nodes array
-export { ecosystemNodes };
+// Export the nodes array and utility functions
+export { ecosystemNodes, getNodeById, getAllNodesByCategory, getRelatedNodes };
 export default ecosystemNodes;
