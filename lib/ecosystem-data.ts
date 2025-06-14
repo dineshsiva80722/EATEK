@@ -287,14 +287,13 @@ export const ecosystemNodes: EcosystemNode[] = [
       "Digital environments that facilitate online learning, offering courses, resources, and interactive experiences.",
     icon: School,
     category: "education",
-    parent: "education",
     color: "#0284c7",
     features: [
       "Adaptive learning pathways",
-      "Interactive content creation",
-      "Learning analytics",
-      "Mobile-friendly interfaces",
+      "Interactive course content",
+      "Progress tracking and analytics",
       "Collaborative learning tools",
+      "Mobile and offline access",
     ],
     useCases: [
       {
@@ -336,7 +335,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description: "Solutions for evaluating learning outcomes, measuring progress, and providing meaningful feedback.",
     icon: ClipboardCheck,
     category: "education",
-    parent: "education",
     color: "#0369a1",
     features: [
       "Authentic assessment design",
@@ -385,7 +383,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description: "Programs and resources focused on science, technology, engineering, and mathematics learning.",
     icon: FlaskConical,
     category: "education",
-    parent: "education",
     color: "#0ea5e9",
     features: [
       "Hands-on learning kits",
@@ -436,7 +433,6 @@ export const ecosystemNodes: EcosystemNode[] = [
       "Creation and distribution of content across digital platforms, including video, audio, and interactive media.",
     icon: Smartphone,
     category: "art",
-    parent: "art",
     color: "#db2777",
     features: [
       "Multi-platform content creation",
@@ -485,7 +481,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description: "Software, hardware, and methodologies that enable artistic creation and expression.",
     icon: PenTool,
     category: "art",
-    parent: "art",
     color: "#be185d",
     features: [
       "Digital art software",
@@ -534,7 +529,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description: "Virtual, augmented, and mixed reality environments that create engaging, multi-sensory experiences.",
     icon: VrHeadset,
     category: "art",
-    parent: "art",
     color: "#ec4899",
     features: [
       "Virtual reality environments",
@@ -586,7 +580,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description: "Comprehensive technology systems and services designed for organizational needs and challenges.",
     icon: Building,
     category: "technology",
-    parent: "technology",
     color: "#059669",
     features: [
       "Digital transformation strategy",
@@ -636,7 +629,6 @@ export const ecosystemNodes: EcosystemNode[] = [
       "Infrastructure, platforms, and software delivered over the internet, offering scalability and flexibility.",
     icon: Cloud,
     category: "technology",
-    parent: "technology",
     color: "#047857",
     features: [
       "Cloud migration strategy",
@@ -686,7 +678,6 @@ export const ecosystemNodes: EcosystemNode[] = [
       "Artificial intelligence and machine learning solutions that automate tasks, generate insights, and enhance capabilities.",
     icon: BrainCircuit,
     category: "technology",
-    parent: "technology",
     color: "#10b981",
     features: [
       "Predictive analytics",
