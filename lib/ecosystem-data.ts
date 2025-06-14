@@ -31,8 +31,8 @@ const getIcon = (name: string): LucideIcon => {
   return null as unknown as LucideIcon
 }
 
-// Export the nodes array
-export const ecosystemNodes: EcosystemNode[] = [
+// Define the nodes array
+const ecosystemNodes: EcosystemNode[] = [
   // Core Node
   {
     id: "eatek",
@@ -891,15 +891,14 @@ export function getAllNodesByCategory(category: EcosystemCategory): EcosystemNod
 }
 
 export function getRelatedNodes(nodeId: string): EcosystemNode[] {
-  const node = ecosystemNodes.find((n) => n.id === nodeId)
-  if (!node?.relatedNodes) {
-    return []
-  }
-  
-  // Map related node IDs to their full node objects
+  const node = getNodeById(nodeId)
+  if (!node) return []
+
   return node.relatedNodes
-    .map(id => ecosystemNodes.find(n => n.id === id))
+    .map((id) => getNodeById(id))
     .filter((n): n is EcosystemNode => n !== undefined)
 }
 
 // Export the nodes array
+export { ecosystemNodes };
+export default ecosystemNodes;

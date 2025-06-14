@@ -1,6 +1,6 @@
 import React from "react"
 import EcosystemMap from "@/components/ecosystem-map"
-import { getAllNodesByCategory } from "@/lib/ecosystem-data"
+import { getAllNodesByCategory, type EcosystemCategory } from "@/lib/ecosystem-data"
 import Link from "next/link"
 
 export default function EcosystemPage() {
@@ -20,9 +20,13 @@ export default function EcosystemPage() {
         </p>
       </div>
 
-      <div className="mb-16">
-        <EcosystemMap />
-      </div>
+      <EcosystemMap 
+        coreNodes={coreNodes}
+        educationNodes={educationNodes}
+        artNodes={artNodes}
+        technologyNodes={technologyNodes}
+        serviceNodes={serviceNodes}
+      />
 
       <div className="grid gap-16">
         <section>
