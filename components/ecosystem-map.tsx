@@ -173,23 +173,19 @@ export default function EcosystemMap() {
       setPositions((prevPositions) => {
         const newPositions = { ...prevPositions }
 
-        // Update orbital positions
+        // Update node positions
         Object.keys(newPositions).forEach((nodeId) => {
-          if (nodeId === "eatek") return // Skip EATEK core
-
           const pos = newPositions[nodeId]
           const node = ecosystemNodes.find((n) => n.id === nodeId)
 
-          if (node && node.relatedNodes) {
-            const relatedNodes = node.relatedNodes
-            const parentPos = relatedNodes.reduce((acc, relatedId) => {
-              if (acc) return acc
-              return initialPositions[relatedId]
-            }, null)
+          if (node && node.relatedNodes && node.relatedNodes.length > 0) {
+            // Find the first related node that exists in our positions
+            const parentId = node.relatedNodes.find(id => id in newPositions)
+            const parentPos = parentId ? newPositions[parentId] : null
 
             if (parentPos) {
               // Update orbit angle
-              pos.orbitAngle += pos.orbitSpeed
+              pos.orbitAngle = (pos.orbitAngle + pos.orbitSpeed) % (Math.PI * 2)
 
               // Calculate new position based on parent's position and orbit
               pos.x = parentPos.x + Math.cos(pos.orbitAngle) * pos.orbitRadius
