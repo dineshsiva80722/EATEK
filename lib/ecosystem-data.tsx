@@ -66,6 +66,10 @@ export interface EcosystemNode {
   integrations?: string[]
 }
 
+export const getAllNodesByCategory = (category: EcosystemNode['category']) => {
+  return ecosystemNodes.filter(node => node.category === category);
+};
+
 export const ecosystemNodes: EcosystemNode[] = [
   // Core EATEK Node
   {
