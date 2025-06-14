@@ -187,7 +187,6 @@ export const ecosystemNodes: EcosystemNode[] = [
       "Exploring creativity and expression through digital and traditional mediums, fostering cultural innovation.",
     icon: Palette,
     category: "art",
-    parent: "eatek",
     color: "#ec4899",
     features: [
       "Digital art creation tools",
@@ -236,7 +235,6 @@ export const ecosystemNodes: EcosystemNode[] = [
     description: "Developing and implementing innovative technological solutions to address complex challenges.",
     icon: Cpu,
     category: "technology",
-    parent: "eatek",
     color: "#10b981",
     features: [
       "Emerging technology research",
