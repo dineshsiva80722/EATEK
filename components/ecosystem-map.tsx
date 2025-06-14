@@ -45,7 +45,21 @@ interface NodePosition {
   orbitAngle: number
 }
 
-export default function EcosystemMap() {
+interface EcosystemMapProps {
+  coreNodes: any[]
+  educationNodes: any[]
+  artNodes: any[]
+  technologyNodes: any[]
+  serviceNodes: any[]
+}
+
+export default function EcosystemMap({
+  coreNodes,
+  educationNodes,
+  artNodes,
+  technologyNodes,
+  serviceNodes
+}: EcosystemMapProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>(0)
