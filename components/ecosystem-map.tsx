@@ -1,14 +1,38 @@
 "use client"
 
 import React from "react"
-
 import { useRef, useState, useEffect } from "react"
-import { ecosystemNodes } from "./ecosystem-data"
+import { ecosystemNodes } from "@/lib/ecosystem-data"
 import { useMobile } from "@/hooks/use-mobile"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ZoomIn, ZoomOut, Home, Info, X, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import * as LucideIcons from "lucide-react"
+
+// Create a type for valid icon names
+type IconName = keyof typeof LucideIcons
+
+// Create a mapping of icon names to their components
+const iconComponents: Record<string, React.ComponentType<any>> = {
+  Lightbulb: LucideIcons.Lightbulb,
+  BookOpen: LucideIcons.BookOpen,
+  Palette: LucideIcons.Palette,
+  Cpu: LucideIcons.Cpu,
+  Rocket: LucideIcons.Rocket,
+  Users: LucideIcons.Users,
+  LineChart: LucideIcons.LineChart,
+  School: LucideIcons.School,
+  ClipboardCheck: LucideIcons.ClipboardCheck,
+  FlaskConical: LucideIcons.FlaskConical,
+  Cloud: LucideIcons.Cloud,
+  BrainCircuit: LucideIcons.BrainCircuit,
+  Smartphone: LucideIcons.Smartphone,
+  PenTool: LucideIcons.PenTool,
+  VrHeadset: LucideIcons.HeadsetIcon as any, // Type assertion for the alias
+  Building: LucideIcons.Building,
+  BarChart3: LucideIcons.BarChart3,
+}
 
 interface NodePosition {
   x: number
@@ -36,6 +60,12 @@ export default function EcosystemMap() {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [activeNode, setActiveNode] = useState<string | null>(null)
   const [dimensions, setDimensions] = useState({ width: 1000, height: 700 })
+
+  // Get icon component by name
+  const getIconComponent = (iconName: string) => {
+    const IconComponent = iconComponents[iconName] || LucideIcons.HelpCircle
+    return <IconComponent className="w-4 h-4" />
+  }
 
   // Initialize node positions
   useEffect(() => {
@@ -508,11 +538,7 @@ export default function EcosystemMap() {
                 >
                   {/* Node icon */}
                   <div className="text-white">
-                    {node.icon &&
-                      React.createElement(node.icon, {
-                        size: nodeSize * 0.5,
-                        className: "text-white",
-                      })}
+                    {node.icon && getIconComponent(node.icon)}
                   </div>
 
                   {/* Orbital ring for main category nodes */}
@@ -628,7 +654,7 @@ export default function EcosystemMap() {
                 <>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 rounded-lg text-white" style={{ background: node.color }}>
-                      {React.createElement(node.icon, { size: 24 })}
+                      {node.icon && getIconComponent(node.icon)}
                     </div>
                     <div>
                       <h3 className="font-medium text-white text-lg">{node.name}</h3>
