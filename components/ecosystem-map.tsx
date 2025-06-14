@@ -83,61 +83,65 @@ export default function EcosystemMap() {
       orbitAngle: 0,
     }
 
-    // Main categories orbit around EATEK
-    const mainCategories = ["education", "art", "technology"]
-    mainCategories.forEach((id, index) => {
-      const angle = (index * 2 * Math.PI) / mainCategories.length
-      const orbitRadius = 200
-      initialPositions[id] = {
-        x: Math.cos(angle) * orbitRadius,
-        y: Math.sin(angle) * orbitRadius,
-        angle,
-        speed: 0.0003,
+    // Main categories in a circle around the core
+    const mainCategories = ecosystemNodes.filter((node) => 
+      node.relatedNodes.includes("eatek") && node.id !== "eatek"
+    )
+    
+    mainCategories.forEach((node, index) => {
+      const angle = (index / mainCategories.length) * Math.PI * 2
+      const distance = isMobile ? 120 : 180
+      
+      initialPositions[node.id] = {
+        x: Math.cos(angle) * distance,
+        y: Math.sin(angle) * distance,
+        angle: 0,
+        speed: 0.002,
         radius: 30,
-        orbitRadius,
-        orbitSpeed: 0.00005,
+        orbitRadius: distance,
+        orbitSpeed: 0.0005,
         orbitAngle: angle,
       }
     })
 
-    // Subcategories orbit around their parent categories
+    // Subcategories orbit around their related main categories
     ecosystemNodes.forEach((node) => {
-      if (node.parent && node.parent !== "eatek" && !initialPositions[node.id]) {
-        const parentPos = initialPositions[node.parent]
+      if (node.id === "eatek" || initialPositions[node.id]) return
+      
+      // Find the first main category this node is related to
+      const mainCategory = mainCategories.find(cat => 
+        node.relatedNodes.includes(cat.id)
+      )
+      
+      if (mainCategory) {
+        const parentPos = initialPositions[mainCategory.id]
         if (parentPos) {
-          const subCategoryCount = ecosystemNodes.filter((n) => n.parent === node.parent).length
-          const index = ecosystemNodes.filter((n) => n.parent === node.parent).findIndex((n) => n.id === node.id)
-          const angle = parentPos.angle + (index * 2 * Math.PI) / subCategoryCount
-          const orbitRadius = 120
-
-          initialPositions[node.id] = {
-            x: parentPos.x + Math.cos(angle) * orbitRadius,
-            y: parentPos.y + Math.sin(angle) * orbitRadius,
-            angle,
-            speed: 0.0005,
-            radius: 20,
-            orbitRadius,
-            orbitSpeed: 0.0001,
-            orbitAngle: angle,
+          const subCategoryCount = ecosystemNodes.filter(n => 
+            n.id !== mainCategory.id && 
+            n.relatedNodes.includes(mainCategory.id) && 
+            !initialPositions[n.id]
+          ).length
+          
+          if (subCategoryCount > 0) {
+            const index = ecosystemNodes
+              .filter(n => n.relatedNodes.includes(mainCategory.id) && !initialPositions[n.id])
+              .findIndex(n => n.id === node.id)
+              
+            const angle = (index / subCategoryCount) * Math.PI * 2
+            const distance = isMobile ? 90 : 120
+            
+            initialPositions[node.id] = {
+              x: parentPos.x + Math.cos(angle) * distance,
+              y: parentPos.y + Math.sin(angle) * distance,
+              angle: 0,
+              speed: 0.003,
+              radius: 20,
+              orbitRadius: distance,
+              orbitSpeed: 0.0008,
+              orbitAngle: angle,
+            }
           }
         }
-      }
-    })
-
-    // Services orbit around EATEK at a different radius
-    const services = ecosystemNodes.filter((node) => node.category === "service")
-    services.forEach((service, index) => {
-      const angle = (index * 2 * Math.PI) / services.length + Math.PI / 6
-      const orbitRadius = 150
-      initialPositions[service.id] = {
-        x: Math.cos(angle) * orbitRadius,
-        y: Math.sin(angle) * orbitRadius,
-        angle,
-        speed: 0.0004,
-        radius: 25,
-        orbitRadius,
-        orbitSpeed: 0.00007,
-        orbitAngle: angle,
       }
     })
 
@@ -176,24 +180,20 @@ export default function EcosystemMap() {
           const pos = newPositions[nodeId]
           const node = ecosystemNodes.find((n) => n.id === nodeId)
 
-          if (node && node.parent) {
-            const parentId = node.parent
-            const parentPos = newPositions[parentId]
+          if (node && node.relatedNodes) {
+            const relatedNodes = node.relatedNodes
+            const parentPos = relatedNodes.reduce((acc, relatedId) => {
+              if (acc) return acc
+              return initialPositions[relatedId]
+            }, null)
 
             if (parentPos) {
               // Update orbit angle
               pos.orbitAngle += pos.orbitSpeed
 
               // Calculate new position based on parent's position and orbit
-              if (parentId === "eatek") {
-                // Direct orbit around EATEK
-                pos.x = Math.cos(pos.orbitAngle) * pos.orbitRadius
-                pos.y = Math.sin(pos.orbitAngle) * pos.orbitRadius
-              } else {
-                // Orbit around another node that itself orbits
-                pos.x = parentPos.x + Math.cos(pos.orbitAngle) * pos.orbitRadius
-                pos.y = parentPos.y + Math.sin(pos.orbitAngle) * pos.orbitRadius
-              }
+              pos.x = parentPos.x + Math.cos(pos.orbitAngle) * pos.orbitRadius
+              pos.y = parentPos.y + Math.sin(pos.orbitAngle) * pos.orbitRadius
             }
           }
         })
@@ -542,7 +542,7 @@ export default function EcosystemMap() {
                   </div>
 
                   {/* Orbital ring for main category nodes */}
-                  {node.category !== "core" && node.parent === "eatek" && (
+                  {node.relatedNodes.includes("eatek") && (
                     <div
                       className="absolute rounded-full border border-white/20"
                       style={{
