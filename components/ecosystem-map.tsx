@@ -353,7 +353,7 @@ export default function EcosystemMap({
     const pos = nodePositions[nodeId]
     if (!pos) return 20
 
-    let size = pos.radius
+    const size = pos.radius
 
     // Increase size for hovered or active nodes
     // if (hoveredNode === nodeId || activeNode === nodeId) {
