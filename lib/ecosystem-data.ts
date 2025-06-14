@@ -44,6 +44,15 @@ export interface EcosystemNode {
   }
 }
 
+// Export individual functions
+export function getNodeById(id: string): EcosystemNode | undefined {
+  return ecosystemNodes.find((node) => node.id === id)
+}
+
+export function getAllNodesByCategory(category: EcosystemCategory): EcosystemNode[] {
+  return ecosystemNodes.filter((node) => node.category === category)
+}
+
 export function getRelatedNodes(nodeId: string): EcosystemNode[] {
   const node = ecosystemNodes.find((n) => n.id === nodeId)
   if (!node?.relatedNodes) {
@@ -56,6 +65,7 @@ export function getRelatedNodes(nodeId: string): EcosystemNode[] {
     .filter((n): n is EcosystemNode => n !== undefined)
 }
 
+// Export the nodes array
 export const ecosystemNodes: EcosystemNode[] = [
   // Core Node
   {
@@ -921,12 +931,4 @@ export const ecosystemNodes: EcosystemNode[] = [
   },
 ]
 
-export function getNodeById(id: string): EcosystemNode | undefined {
-  return ecosystemNodes.find((node) => node.id === id)
-}
-
-export function getAllNodesByCategory(category: EcosystemCategory): EcosystemNode[] {
-  return ecosystemNodes.filter((node) => node.category === category)
-}
-
-export { ecosystemNodes, getRelatedNodes, getNodeById, getAllNodesByCategory }
+// Export all necessary functions and the nodes ar
