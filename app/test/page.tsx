@@ -12,7 +12,7 @@ export default function TestPage() {
             Go to Home
           </a>
           <p className="text-sm text-gray-500">
-            If the button above doesn't work, try refreshing the page or check the browser console for errors.
+            If the button above doesn&apos;t work, try refreshing the page or check the browser console for errors.
           </p>
         </div>
       </div>
