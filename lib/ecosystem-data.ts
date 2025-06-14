@@ -882,10 +882,6 @@ const ecosystemNodes: EcosystemNode[] = [
 ]
 
 // Export individual functions
-export const getNodeById = (id: string): EcosystemNode | undefined => {
-  return ecosystemNodes.find((node) => node.id === id);
-};
-
 export const getAllNodesByCategory = (category: EcosystemCategory): EcosystemNode[] => {
   return ecosystemNodes.filter((node) => node.category === category);
 };
