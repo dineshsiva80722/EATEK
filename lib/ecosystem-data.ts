@@ -882,22 +882,22 @@ const ecosystemNodes: EcosystemNode[] = [
 ]
 
 // Export individual functions
-export function getNodeById(id: string): EcosystemNode | undefined {
-  return ecosystemNodes.find((node) => node.id === id)
-}
+export const getNodeById = (id: string): EcosystemNode | undefined => {
+  return ecosystemNodes.find((node) => node.id === id);
+};
 
-export function getAllNodesByCategory(category: EcosystemCategory): EcosystemNode[] {
-  return ecosystemNodes.filter((node) => node.category === category)
-}
+export const getAllNodesByCategory = (category: EcosystemCategory): EcosystemNode[] => {
+  return ecosystemNodes.filter((node) => node.category === category);
+};
 
-export function getRelatedNodes(nodeId: string): EcosystemNode[] {
-  const node = getNodeById(nodeId)
-  if (!node) return []
+export const getRelatedNodes = (nodeId: string): EcosystemNode[] => {
+  const node = getNodeById(nodeId);
+  if (!node) return [];
 
   return node.relatedNodes
     .map((id) => getNodeById(id))
-    .filter((n): n is EcosystemNode => n !== undefined)
-}
+    .filter((n): n is EcosystemNode => n !== undefined);
+};
 
 // Export the nodes array
 export { ecosystemNodes };
